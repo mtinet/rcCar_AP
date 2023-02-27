@@ -12,7 +12,7 @@
 ![image](https://user-images.githubusercontent.com/13882302/221561462-077cc0cd-9758-47a3-a247-4902d84121f7.png)
 
 ### 기본 AP모드 동작 확인 예제 코드
-'''python
+```python
 try:
  import usocket as socket        #importing socket
 except:
@@ -47,6 +47,6 @@ while True:
   response = web_page()
   conn.send(response)
   conn.close()
-'''
+```
 
 [https://microcontrollerslab.com/raspberry-pi-pico-w-soft-access-point-web-server-example/](https://microcontrollerslab.com/raspberry-pi-pico-w-soft-access-point-web-server-example/)  
