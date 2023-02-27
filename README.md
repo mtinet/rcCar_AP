@@ -49,4 +49,12 @@ while True:
   conn.close()
 ```
 
+### 결과  
+![image](https://user-images.githubusercontent.com/13882302/221562165-a7907db8-48de-4521-a384-15d0f07fbeb0.png)  
+![image](https://user-images.githubusercontent.com/13882302/221562052-31e35d7d-4a9e-4019-b120-894f2f6d6435.png)  
+![image](https://user-images.githubusercontent.com/13882302/221562074-81eee2d7-0223-4e7d-a662-268e67fb0bbd.png)  
+![image](https://user-images.githubusercontent.com/13882302/221562086-c60c620a-f10b-4b21-858f-805c96c9ee8d.png)  
+
+
+### 참고링크  
 [https://microcontrollerslab.com/raspberry-pi-pico-w-soft-access-point-web-server-example/](https://microcontrollerslab.com/raspberry-pi-pico-w-soft-access-point-web-server-example/)  
