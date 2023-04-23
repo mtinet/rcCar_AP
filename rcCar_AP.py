@@ -2,11 +2,14 @@ import socket
 import network
 import machine
 
+# 접속을 위한 ssid, password 설정 
 ssid = 'rcCar_AP'
 password = '123456789'
 
 led = machine.Pin("LED",machine.Pin.OUT)
 
+
+# AP모드 설정
 ap = network.WLAN(network.AP_IF)
 ap.config(essid=ssid, password=password)
 ap.active(True)
@@ -14,8 +17,19 @@ ap.active(True)
 while ap.active() == False:
   pass
 
-print('Connection successful')
-print(ap.ifconfig())
+print('Ready to Connection')
+print("Connect to the WiFi with the '" + ssid + "'")
+print("Connection IP: " + ap.ifconfig()[0])
+print()
+
+# 소켓 접속을 위한 설정
+addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
+s = socket.socket()
+s.bind(addr)
+s.listen(1)
+
+# print('listening on', addr)
+led.off()
 
 #Template HTML
 html = f"""
@@ -59,23 +73,34 @@ html = f"""
     </html>
 """
 
-addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
-s = socket.socket()
-s.bind(addr)
-s.listen(1)
 
-print('listening on', addr)
-led.off()
 
 # Listen for connections
 while True:
     try:
         cl, addr = s.accept()
-        print('client connected from', addr)
+        # print('client connected from', addr)
+        
         request = cl.recv(1024)
         led.on()
-        print(request)
-
+        # print(request)
+        
+        if b'GET /forward' in request:
+            # forward 동작 수행
+            print("Input Command: forward")
+        elif b'GET /left' in request:
+            # left 동작 수행
+            print("Input Command: left")
+        elif b'GET /right' in request:
+            # right 동작 수행
+            print("Input Command: right")
+        elif b'GET /stop' in request:
+            # stop 동작 수행
+            print("Input Command: stop")
+        elif b'GET /back' in request:
+            # back 동작 수행
+            print("Input Command: back")
+            
         cl.send('HTTP/1.0 200 OK\r\nContent-type: text/html\r\n\r\n')
         cl.send(html)
         cl.close()
