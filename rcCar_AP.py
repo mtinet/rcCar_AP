@@ -38,8 +38,8 @@ html = f"""
       <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>IoT Car</title>
-        <center><H1>IoT Car</h1></center>
+        <title>IoT RC Car</title>
+        <center><H1>IoT RC Car</h1></center>
         <style>
           /* 버튼 디자인 */
           .button {{
