@@ -54,7 +54,7 @@ html = f"""
             transition-duration: 0.4s;
             cursor: pointer;
             background-color: #4CAF50;
-            width: 10px;
+            width: 100px;
             height: 80px;
             border-radius: 20%;
             box-shadow: 2px 2px 2px #888888;
@@ -134,4 +134,5 @@ while True:
     except OSError as e:
         cl.close()
         print('connection closed')
+
 
