@@ -2,7 +2,7 @@ import socket
 import network
 import machine
 
-ssid = 'mtinet'
+ssid = 'rcCar_AP'
 password = '123456789'
 
 led = machine.Pin("LED",machine.Pin.OUT)
