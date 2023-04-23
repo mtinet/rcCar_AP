@@ -26,7 +26,7 @@ print()
 addr = socket.getaddrinfo('0.0.0.0', 80)[0][-1]
 s = socket.socket()
 s.bind(addr)
-s.listen(1)
+s.listen(1) # AP 접속자 수를 1명으로 제한함 
 
 # print('listening on', addr)
 led.off()
@@ -35,44 +35,69 @@ led.off()
 html = f"""
     <!DOCTYPE html>
     <html>
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Zumo Robot Control</title>
-            <center><H1>IoT Car</h1></center>
-        </head>
-        <body>
-            <center>
-                <form action="./forward">
-                    <input type="submit" value="Forward" style="height:100px; width:100px; font-size:10px" />
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>IoT Car</title>
+        <center><H1>IoT Car</h1></center>
+        <style>
+          /* 버튼 디자인 */
+          .button {{
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            background-color: #4CAF50;
+            width: 10px;
+            height: 80px;
+            border-radius: 20%;
+            box-shadow: 2px 2px 2px #888888;
+          }}
+          .button:hover {{
+            background-color: #3e8e41;
+          }}
+        </style>
+
+      </head>
+      <body>
+        <center>
+          <form action="./forward">
+            <button class="button" type="submit">Forward</button>
+          </form>
+          <br>
+          <table>
+            <tr>
+              <td>
+                <form action="./left">
+                  <button class="button" type="submit">Left</button>
                 </form>
-                <table>
-                    <tr>
-                        <td>
-                            <form action="./left">
-                                <input type="submit" value="Left" style="height:100px; width:100px; font-size:10px" />
-                            </form>
-                        </td>
-                        <td>
-                            <form action="./stop">
-                                <input type="submit" value="Stop" style="height:100px; width:100px; font-size:10px" />
-                            </form>
-                        </td>
-                        <td>
-                            <form action="./right">
-                                <input type="submit" value="Right" style="height:100px; width:100px; font-size:10px" />
-                            </form>
-                        </td>
-                    </tr>
-                </table>
-                <form action="./back">
-                    <input type="submit" value="Back" style="height:100px; width:100px; font-size:10px" />
+              </td>
+              <td>
+                <form action="./stop">
+                  <button class="button" type="submit">Stop</button>
                 </form>
-            </center>
-        </body>
+              </td>
+              <td>
+                <form action="./right">
+                  <button class="button" type="submit">Right</button>
+                </form>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <form action="./back">
+            <button class="button" type="submit">Back</button>
+          </form>
+        </center>
+      </body>
     </html>
 """
-
 
 
 # Listen for connections
@@ -109,3 +134,4 @@ while True:
     except OSError as e:
         cl.close()
         print('connection closed')
+
